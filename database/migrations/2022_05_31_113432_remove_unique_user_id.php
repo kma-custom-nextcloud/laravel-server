@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameKeyEncryptionUserTable extends Migration
+class RemoveUniqueUserId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class RenameKeyEncryptionUserTable extends Migration
      */
     public function up()
     {
-        Schema::rename('key_encryption_user', 'key_encryption_users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropUnique(['user_id']);
+            
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class RenameKeyEncryptionUserTable extends Migration
      */
     public function down()
     {
-        Schema::rename('key_encryption_users', 'key_encryption_user');
+        
+        Schema::table('users', function (Blueprint $table) {
+            $table->unique(['user_id']);
+        });
     }
 }

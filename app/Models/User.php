@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @OA\Schema(
  *   schema="CreateUserSchema",
  *   description="Create User schema",
- *   @OA\Property(property="user_id", type="string", description="User uid của nextcloud", example="acca7421-d920-4751-b227-a21ef604f655", nullable=false),
+ *   @OA\Property(property="user_id or id", type="string", description="User uid của nextcloud", example="acca7421-d920-4751-b227-a21ef604f655 or 1,2,3", nullable=false),
  *   @OA\Property(property="token_type", type="string", description="Loại token", example="Safenet EToken 5510", nullable=false),
  *   @OA\Property(property="token_name", type="string", description="Tên Token", example="Token BCY", nullable=false),
  *   @OA\Property(property="public_key", type="string", description="Public Key", example="", nullable=false),
