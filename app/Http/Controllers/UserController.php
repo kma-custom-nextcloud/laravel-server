@@ -66,7 +66,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/v2/api/users/{id}/public-key",
+     *     path="/api/v2/users/{id}/public-key",
      *     tags={"users v2"},
      *     description="User uid",
      *     @OA\Parameter(
@@ -144,7 +144,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/v2/api/users/{id}",
+     *     path="/api/v2/users/{id}",
      *     tags={"users v2"},
      *     description="User uid",
      *     @OA\Parameter(
@@ -207,7 +207,7 @@ class UserController extends Controller
 
     /**
      * @OA\Post (
-     *     path="/v2/api/users/verify-signature",
+     *     path="/api/v2/users/verify-signature",
      *     tags={"users v2"},
      *     description="User",
      *     @OA\Response(response=200, description="Trả về true hoặc false thể hiện signutare có hợp lệ hay không"),
@@ -273,7 +273,7 @@ class UserController extends Controller
 
     /**
      * @OA\Put (
-     *     path="/v2/api/users/{id}",
+     *     path="/api/v2/users/{id}",
      *     tags={"users v2"},
      *     operationId="updateUser",
      *     description="Cập nhật thông tin của User",
@@ -336,7 +336,7 @@ class UserController extends Controller
 
     /**
      * @OA\Delete (
-     *     path="/v2/api/users/{id}",
+     *     path="/api/v2/users/{id}",
      *     tags={"users v2"},
      *     operationId="deleteUser",
      *     description="Xoá user",
