@@ -253,6 +253,31 @@
                 }
             }
         },
+        "/api/v2/users/{id}/public-key": {
+            "get": {
+                "tags": [
+                    "users v2"
+                ],
+                "description": "User uid",
+                "operationId": "bd9e5c31497a6cad695ebb24e8c26dba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trả về public key"
+                    }
+                }
+            }
+        },
         "/api/users/{user_id}": {
             "get": {
                 "tags": [
@@ -335,6 +360,88 @@
                 }
             }
         },
+        "/api/v2/users/{id}": {
+            "get": {
+                "tags": [
+                    "users v2"
+                ],
+                "description": "User uid",
+                "operationId": "2b7a2b7f135d3e9d504bcf53c6f56b89",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trả về user token"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "users v2"
+                ],
+                "description": "Cập nhật thông tin của User",
+                "operationId": "updateUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update user object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Trả về true hoặc false thể hiện thao tác thành công hay không"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users v2"
+                ],
+                "description": "Xoá user",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
         "/api/users/verify-signature": {
             "post": {
                 "tags": [
@@ -358,6 +465,30 @@
                     }
                 }
             }
+        },
+        "/api/v2/users/verify-signature": {
+            "post": {
+                "tags": [
+                    "users v2"
+                ],
+                "description": "User",
+                "requestBody": {
+                    "description": "Create user object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerifySignatureBody_v2"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Trả về true hoặc false thể hiện signutare có hợp lệ hay không"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -370,6 +501,24 @@
                         "description": "User uid của nextcloud",
                         "type": "string",
                         "example": "acca7421-d920-4751-b227-a21ef604f655"
+                    },
+                    "signature": {
+                        "nullable": false,
+                        "description": "Loại token",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "VerifySignatureBody_v2": {
+                "description": "Verify Signature Body",
+                "properties": {
+                    "id": {
+                        "nullable": false,
+                        "description": "id của user",
+                        "type": "string",
+                        "example": "1"
                     },
                     "signature": {
                         "nullable": false,
@@ -471,11 +620,11 @@
             "CreateUserSchema": {
                 "description": "Create User schema",
                 "properties": {
-                    "user_id": {
+                    "user_id or id": {
                         "nullable": false,
                         "description": "User uid của nextcloud",
                         "type": "string",
-                        "example": "acca7421-d920-4751-b227-a21ef604f655"
+                        "example": "acca7421-d920-4751-b227-a21ef604f655 or 1,2,3"
                     },
                     "token_type": {
                         "nullable": false,
